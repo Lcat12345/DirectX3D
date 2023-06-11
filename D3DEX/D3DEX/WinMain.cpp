@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include "WindowsMessageMap.h"
+#include <sstream>
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -21,6 +22,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		if (wParam == 'F')
 		{
 			SetWindowText(hWnd, L"nya");
+		}
+		break;
+	case WM_CHAR:
+		{
+			static std::string title;
+			title.push_back((char)wParam);
+			SetWindowTextA(hWnd, title.c_str());
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINTS pt = MAKEPOINTS(lParam);
+			std::ostringstream oss;
+			oss << "(" << pt.x << ", " << pt.y << ")";
+			SetWindowTextA(hWnd, oss.str().c_str());
 		}
 		break;
 	}
