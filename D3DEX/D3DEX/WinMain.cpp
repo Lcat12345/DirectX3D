@@ -37,6 +37,10 @@ int CALLBACK WinMain(
 			// TranslateMessage will post auxilliary WM_CHAR messages from key msgs
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+			if (wnd.kbd.KeyIsPressed(VK_SPACE))
+			{
+				MessageBox(nullptr, L"Wow", L"Space Key", MB_OK);
+			}
 		}
 
 		// check if GetMessage call itself borked
