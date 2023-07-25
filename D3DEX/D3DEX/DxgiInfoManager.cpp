@@ -50,7 +50,7 @@ void DxgiInfoManager::Set() noexcept
 
 std::vector<std::string> DxgiInfoManager::GetMessages() const
 {
-	std::vector<std::string> messages {};
+	std::vector<std::string> messages;
 	const auto end = pDxgiInfoQueue->GetNumStoredMessages( DXGI_DEBUG_ALL );
 	for( auto i = next; i < end; i++ )
 	{
