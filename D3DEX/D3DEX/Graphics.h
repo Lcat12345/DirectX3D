@@ -2,6 +2,7 @@
 #include "ChiliWin.h"
 #include "ChiliException.h"
 #include <d3d11.h>
+#include <wrl.h>
 #include <vector>
 #include "DxgiInfoManager.h"
 
@@ -39,19 +40,24 @@ public:
 	Graphics(HWND hWnd);
 	Graphics(const Graphics&) = delete;
 	Graphics& operator=(const Graphics&) = delete;
-	~Graphics();
+	~Graphics() = default;
 	void EndFrame();
-	void ClearBuffer(float red, float green, float blue) noexcept
+	void ClearBuffer(float red, float green, float blue) noexcept;
+	void DrawTestTriangle() 
 	{
-		const float color[] = { red,green,blue,1.0f };
-		pContext->ClearRenderTargetView(pTarget, color);
+		namespace wrl = Microsoft::WRL;
+
+		wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
+		D3D11_BUFFER_DESC bd = {};
+		pContext->Draw( 3u, 0u );
 	}
+
 private:
 #ifndef NDEBUG
 	DxgiInfoManager infoManager;
 #endif
-	ID3D11Device* pDevice = nullptr;
-	IDXGISwapChain* pSwap = nullptr;
-	ID3D11DeviceContext* pContext = nullptr;
-	ID3D11RenderTargetView* pTarget = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Device> pDevice;
+	Microsoft::WRL::ComPtr<IDXGISwapChain> pSwap;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pTarget;
 };
