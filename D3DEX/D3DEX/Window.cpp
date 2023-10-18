@@ -79,7 +79,6 @@ Window::Window(int width, int height, LPCWSTR name) noexcept
 	wr.right = width + wr.left;
 	wr.top = 100;
 	wr.bottom = height + wr.top;
-	AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE);
 
 	if (AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE) == 0)
 	{
@@ -92,7 +91,6 @@ Window::Window(int width, int height, LPCWSTR name) noexcept
 		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
 		CW_USEDEFAULT, CW_USEDEFAULT, wr.right - wr.left, wr.bottom - wr.top,
 		nullptr, nullptr, WindowClass::GetInstance(), this);
-
 
 	// newly created windows start off as hidden
 	ShowWindow(hWnd, SW_SHOWDEFAULT);

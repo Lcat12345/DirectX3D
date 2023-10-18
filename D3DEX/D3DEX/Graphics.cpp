@@ -41,8 +41,7 @@ Graphics::Graphics(HWND hWnd)
 	HRESULT hr;
 
 	// create device and front/back buffers, and swap chain and rendering context
-	GFX_THROW_INFO(
-		D3D11CreateDeviceAndSwapChain(
+	GFX_THROW_INFO(		D3D11CreateDeviceAndSwapChain(
 		nullptr,
 		D3D_DRIVER_TYPE_HARDWARE,
 		nullptr,
@@ -138,7 +137,8 @@ void Graphics::ClearBuffer(float red, float green, float blue) noexcept
 }
 
 void Graphics::DrawIndexed(UINT count) noexcept(!IS_DEBUG)
-{
+{	
+
 	GFX_THROW_INFO_ONLY(pContext->DrawIndexed(count, 0u, 0u));	
 }
 
