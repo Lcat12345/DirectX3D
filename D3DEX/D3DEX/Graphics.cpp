@@ -183,6 +183,18 @@ void Graphics::DisableImgui() noexcept
 	imguiEnabled = false;
 }
 
+
+void Graphics::SetCamera(DirectX::FXMMATRIX cam) noexcept
+{
+	camera = cam;
+}
+
+DirectX::XMMATRIX Graphics::GetCamera() const noexcept
+{
+	return camera;
+}
+
+
 bool Graphics::IsImguiEnabled() const noexcept
 {
 	return imguiEnabled;
