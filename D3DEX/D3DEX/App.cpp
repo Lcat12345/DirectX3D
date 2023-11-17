@@ -10,6 +10,10 @@
 #include "GDIPlusManager.h"
 #include "imgui.h"
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 namespace dx = DirectX;
 
 GDIPlusManager gdipm;
@@ -63,6 +67,12 @@ App::App()
 		std::uniform_int_distribution<int> longdist{ 10, 40 };
 		std::uniform_int_distribution<int> typedist{ 0, 2 };
 	};*/
+
+	Assimp::Importer imp;
+	auto model = imp.ReadFile("models\\suzanne.obj",
+		aiProcess_Triangulate |
+		aiProcess_JoinIdenticalVertices
+	);
 
 	class Factory
 	{
