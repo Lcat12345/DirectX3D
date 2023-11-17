@@ -26,7 +26,7 @@ AssTest::AssTest( Graphics& gfx,std::mt19937& rng,
 		};
 
 		Assimp::Importer imp;
-		const auto pModel = imp.ReadFile( "models\\suzanne.obj",
+		const auto pModel = imp.ReadFile( "models\\Chicken.obj",
 			aiProcess_Triangulate |
 			aiProcess_JoinIdenticalVertices
 		);
